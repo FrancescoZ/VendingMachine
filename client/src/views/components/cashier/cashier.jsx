@@ -9,6 +9,12 @@ import { wallet } from '../../../core/api/index';
 import "./styles.scss";
 
 class Cashier extends React.Component {
+
+    onChangeClick(balance){
+        wallet.getChanges(balance);
+        cashier.resetBalance();
+      }
+
   render() {
 
     const cssClass = classNames({
@@ -20,9 +26,9 @@ class Cashier extends React.Component {
     return (
       <div className={cssClass}>
         <div className='balance'>
-          Balance: <span className='sum'>{ cashierInfo.balance } £</span>
+          Balance: <span className='sum'>{ parseFloat(cashierInfo.balance.toFixed(2)) } £</span>
         </div>
-        <div className='change'></div>
+        <div className='change' onClick={this.onChangeClick.bind(this,cashierInfo.balance)}></div>
       </div>
     );
   }

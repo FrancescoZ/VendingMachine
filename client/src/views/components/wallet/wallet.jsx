@@ -12,7 +12,7 @@ import { getWalletInfo } from "../../../core/redux/wallet";
 
 class Wallet extends React.Component {
 
-  onCoinClick(coin, evt) {
+  onCoinClick(coin) {
     wallet.insertCoin(coin);
     cashier.insertCoin(coin);
   }
@@ -28,7 +28,7 @@ class Wallet extends React.Component {
     return (
       <div className={cssClass}>
         <div className='balance'>
-          Wallet: <span className='sum'> {walletInfo.balance} £</span>
+          Wallet: <span className='sum'> {parseFloat(walletInfo.balance.toFixed(2))} £</span>
         </div>
         <div className='coins'>
           <div className='title'>

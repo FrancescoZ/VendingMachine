@@ -44,8 +44,9 @@ class Cashier {
 
   resetBalance() {
     if (this.data.balance > 0) {
-      this.publishSuccess(createMessage('Changes Returned', this.data.balance))
-      this.data.balance = 0;
+        let bl = this.data.balance;
+        this.data.balance = 0;
+        this.publishSuccess(createMessage('Changes Returned', bl))
     } else {
       this.publishFailure(createMessage('No changes found', this.data.balance))
     }
