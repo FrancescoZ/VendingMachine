@@ -1,18 +1,36 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "mongoose": "^5.6.9",
-    "morgan": "^1.9.1"
+    "name": "certiwine",
+    "version": "0.0.1",
+    "dependencies": {
+      "bcrypt": "^1.0.3",
+      "cors": "^2.8.4",
+      "express": "^4.16.2",
+      "jsonwebtoken": "^8.1.1",
+      "mongoose": "^5.0.7"
+    },
+    "description": "Welcome to certiwine",
+    "main": "/",
+    "devDependencies": {
+      "nodemon": "^1.17.1"
+    },
+    "scripts": {
+        "start": "node ./server.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/FrancescoZ/CertiWineAPI.git"
+    },
+    "keywords": [
+      "Wine",
+      "IoT",
+      "Sensor",
+      "Certification"
+    ],
+    "author": "Francesco Zanoli",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/FrancescoZ/CertiWineAPI/issues"
+    },
+    "homepage": "https://github.com/FrancescoZ/CertiWineAPI#readme"
   }
-}
+  

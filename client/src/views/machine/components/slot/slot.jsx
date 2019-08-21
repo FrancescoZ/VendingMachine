@@ -19,7 +19,9 @@ class Slot extends React.Component {
     };
 
     return (
-        <div className="container" data-can={type} onClick={slotClick.bind(this,this.props.debugMode)}>
+        <div className="container" 
+            data-can={type} 
+            onClick={slotClick.bind(this,this.props.debugMode)}>
             <div className='can'></div>
             <div className='b-slot__info'>
                 <span>{ rackLiteral + '' + slotIndex }</span>
