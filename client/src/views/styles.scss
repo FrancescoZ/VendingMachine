@@ -1,0 +1,217 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+@import url(https://fonts.googleapis.com/css?family=Lobster+Two);
+@import url(https://fonts.googleapis.com/css?family=Pacifico|Roboto+Condensed);
+@import './colors.scss';
+
+.b-root {
+}
+
+
+
+*,
+*:before,
+*:after{
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+body{
+	font-family: 'Roboto Condensed', sans-serif;
+	background-color: $bubblegum;
+	width: 100%;
+	height: 100%;
+	min-height: 770px;
+	position: relative;
+}
+
+
+.inner{
+	width: 260px;
+	height: 400px;
+	background-color: black;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	border-radius: 5px;
+	overflow: hidden;
+	
+	&:before,
+	&:after{
+		position: absolute;
+		content: "";
+		top: 0;
+		width: 50px;
+		height: 100%;
+		box-shadow: 0 0 100px 30px rgba(255, 230, 150, .9);
+		z-index: 2;
+	}
+	
+	&:before{
+		left: -50px;
+		animation: light-flicker 7s infinite;
+	}
+	
+	&:after{
+		right: -50px;
+	}
+}
+
+@keyframes light-flicker{
+	0%,
+	18%,
+	20%,
+	98%,
+	100%{
+		opacity: 1;
+	}
+	
+	99%,
+	19%{
+		opacity: .5;
+	}
+}
+
+.tray-inner{
+	width: 260px;
+	height: 50px;
+	background-color: black;
+	position: absolute;
+	left: 20px;
+	bottom: 20px;
+	border-radius: 5px;
+	
+	// Can
+	.container{
+		position: absolute;
+		bottom: -7px;
+		left: 45%;
+		border-color: transparent !important;
+		z-index: 10;
+		animation: shake-can .25s .5s infinite;
+		transform-origin: center -100px;
+		
+		.can{
+			transform: rotate(-20deg) scale(.5, .5);
+			opacity: 0;
+			animation: show-can .5s .5s forwards;
+		}
+		
+		&.hide{
+				transition: all .5s;
+				opacity: 0;
+			}
+	}
+}
+
+@keyframes shake-can{
+	0%,
+	100%{
+		transform: rotate(0);
+	}
+	
+	50%{
+		transform: rotate(10deg);
+	}
+}
+
+@keyframes show-can{
+	0%{
+		transform: rotate(-20deg) scale(.5, .5);
+		opacity: 0;
+	}
+	100%{
+		transform: translateX(0) translateY(-100px) rotate(70deg) scale(10, 10);
+		opacity: 1;
+	}
+}
+
+
+.shelf{
+	display: block;
+	width: 100%;
+	border-bottom: 5px solid rgb(40, 40, 55);
+	
+	&:after{
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+// Can
+.container{
+	float: left;
+	width: 52px;
+	height: 70px;
+	border-width: 0;
+	border-bottom-width: 15px;
+	border-style: solid;
+	position: relative;
+
+	.can-label{
+		position: absolute;
+		bottom: -15px;
+		left: 0;
+		width: 100%;
+		text-align: center;
+		color: white;
+		line-height: 15px;
+		font-size: 10px;
+	}
+
+	.can{
+		position: absolute;
+		bottom: 0;
+		left: calc(50% - 12px);
+		width: 24px;
+		height: 40px;
+		border-radius: 3px;
+		font-family: 'Pacifico', cursive;
+		overflow: hidden;
+
+		&:before{
+			position: absolute;
+			transform-origin: top left;
+			transform: rotate(-90deg);
+			top: 40px;
+			left: -2px;
+			width: 40px;
+			text-align: center;
+			color: white;
+			font-size: 12px;
+		}
+
+		&:after{
+			position: absolute;
+			content: "";
+			right: 3px;
+			top: 3px;
+			width: 3px;
+			height: calc(100% - 6px);
+			background-color: rgba(255, 255, 255, .25);
+			border-radius: 3px;
+		}
+	}
+}
+
+
+
+
+a{
+	font-family: "Pacifico";
+	text-decoration: none;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	color: white;
+	padding: 20px;
+	font-size: 22px;
+	opacity: .25;
+	transition: all .2s;
+	
+	&:hover{
+		opacity: 1;
+	}
+}

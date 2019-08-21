@@ -1,0 +1,109 @@
+@import '../../colors.scss';
+
+.coin {
+    flex: 25%;
+    padding: 10px 10px;
+    margin: 5px;
+    bottom: 0;
+    left: calc(50% - 12px);
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    overflow: hidden;
+    border-color: darken($money, 10%);
+}
+
+.coin-container{
+    top: -27px;
+    left: -5px;
+    border-color: transparent !important;
+}
+
+[data-coin="0.01£"]{
+	
+	.coin{
+		background-color: $money;
+        border-color: darken($money, 10%);
+        border-width: 1em;
+		&:before{
+			content: "1p";
+		}
+	}
+}
+
+[data-coin="0.02£"]{	
+	.coin{
+		background-color: $money;
+        border-color: darken($money, 10%);
+        border-width: 1em;
+		&:before{
+			content: "2p";
+		}
+	}
+}
+
+[data-coin="0.05£"]{
+	.coin{
+		background-color: $money;
+        border-color: darken($money, 10%);
+        border-width: 1em;
+		&:before{
+			content: "5p";
+		}
+	}
+}
+
+[data-coin="0.10£"]{
+	.coin{
+		background-color: $money;
+        border-color: darken($money, 10%);
+        border-width: 1em;
+		&:before{
+			content: "10p";
+		}
+	}
+}
+
+[data-coin="0.20£"]{
+	.coin{
+		background-color: $money;
+        border-color: darken($money, 10%);
+        border-width: 1em;
+		&:before{
+			content: "20p";
+		}
+	}
+}
+
+[data-coin="0.50£"]{
+	.coin{
+		background-color: $money;
+        border-color: darken($money, 10%);
+        border-width: 1em;
+		&:before{
+			content: "50p";
+		}
+	}
+}
+
+[data-coin="1.0£"]{
+	.coin{
+		background-color: $goldMoney;
+        border-color: darken($goldMoney, 10%);
+        border-width: 1em;
+		&:before{
+			content: "1£";
+		}
+	}
+}
+
+[data-coin="2.0£"]{
+	.coin{
+		background-color: $goldMoney;
+        border-color: darken($goldMoney, 10%);
+        border-width: 1em;
+		&:before{
+			content: "2£";
+		}
+	}
+}

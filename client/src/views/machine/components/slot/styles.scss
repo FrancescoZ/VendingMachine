@@ -1,0 +1,107 @@
+@import '../../../colors.scss';
+
+.b-slot {
+  position: relative;
+  cursor: pointer;
+  height: 150px;
+  border-right: 1px solid rgba(0,0,0,0.7);
+  padding: 10px;
+
+  &:hover {
+    background-color: rgba(0,0,0,0.05);
+  }
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.b-slot__item-title {
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+}
+
+.b-slot__item-quantity {
+    margin-top: 22px;
+}
+
+.b-slot__info {
+    font-family: 'Oswald', sans-serif;
+    margin-top: 0px;
+    font-size: 12px;
+    margin-left: 2px;
+    color: white;
+}
+
+.b-slot__info-price {
+    font-family: Oswald,sans-serif;
+    margin-top: 36px;
+    font-size: 12px;
+    color: white;
+    margin-left: 3px;
+}
+
+.b-slot__info-quantity {
+    padding:4px;
+}
+
+[data-can="1"]{
+	border-color: darken($cherry, 10%);
+	
+	.can{
+		background-color: $cherry;
+		
+		&:before{
+			content: "cherry";
+		}
+	}
+}
+
+[data-can="2"]{
+	border-color: darken($orange, 10%);
+	
+	.can{
+		background-color: $orange;
+		
+		&:before{
+			content: "ginger";
+		}
+	}
+}
+
+[data-can="3"]{
+	border-color: rgb(140, 140, 140);
+	
+	.can{
+		background-color: rgb(180, 180, 200);
+		
+		&:before{
+			content: "mist";
+		}
+	}
+}
+
+[data-can="4"]{
+	border-color: rgb(120, 60, 80);
+	
+	.can{
+		background-color: rgb(80, 30, 50);
+		
+		&:before{
+			content: "berry";
+		}
+	}
+}
+
+[data-can="5"]{
+	border-color: darken($mint, 10%);
+	
+	.can{
+		background-color: $mint;
+		
+		&:before{
+			content: "mint";
+		}
+	}
+}

@@ -1,0 +1,1 @@
+export const getInfoDisplayData = (state) => state.infoDisplay;

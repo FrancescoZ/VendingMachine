@@ -1,0 +1,29 @@
+.tray{
+	width: 260px;
+	height: 50px;
+	background-color: rgb(180, 180, 180);
+	position: absolute;
+	left: 20px;
+	bottom: 20px;
+	border-radius: 5px;
+	transform-origin: top center;
+	transform: rotateX(0deg);
+	transition: all.5s;
+	transition-timing-function: cubic-bezier(.6, 0, .4, 1);
+	
+	&.open{
+		transform: rotateX(-45deg);
+	}
+	
+	&:after{
+		position: absolute;
+		top: 28px;
+		left: 0;
+		text-align: center;
+		width: 100%;
+		display: block;
+		opacity: .5;
+		color: black;
+		font-size: 12px;
+	}
+}

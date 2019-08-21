@@ -1,0 +1,52 @@
+@import '../colors.scss';
+
+.machine{
+    top: 50px;
+    float: right;
+	left: calc(50% - 165px);
+	width: 330px;
+	height: 500px;
+	background-color: $mint;
+	border-radius: 10px;
+	perspective: 300px;
+	
+	&:before{
+		position: absolute;
+		content: "";
+		z-index: -1;
+		border-radius: 3px;
+		background-color: rgb(150, 150, 150);
+		width: 30px;
+		height: 40px;
+		top: 150px;
+		right: 10px;
+	}
+	
+	&:after{
+		position: absolute;
+		content: "";
+		z-index: -1;
+		border-radius: 3px;
+		background-color: black;
+		width: 26px;
+		height: 15px;
+		top: 152px;
+		right: 12px;
+	}
+}
+
+
+
+.column {
+    float: left;
+    width: 50%;
+    padding-left: 5em;
+    padding-top: 5em;
+  }
+  
+  /* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
