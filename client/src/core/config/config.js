@@ -29,14 +29,14 @@ export const config  = {
 };
 
 export const COINS = {
-    OnePenny : {title : '0.01£', value : 0.01},
-    TwoPenny : {title : '0.02£', value : 0.02},
-    FivePenny : {title : '0.05£', value : 0.05},
-    TenPenny : {title : '0.10£', value : 0.10},
-    TwentyPenny : {title : '0.20£', value : 0.20},
-    FiftyPenny : {title : '0.50£', value : 0.50},
-    OnePound : {title : '1.0£', value : 1.00},
-    TwoPound : {title : '2.0£', value : 2.0}
+    OnePenny    : { TYPE:"OnePenny", title : '0.01£', value : 0.01},
+    TwoPenny    : { TYPE:"TwoPenny", title : '0.02£', value : 0.02},
+    FivePenny   : { TYPE:"FivePenny", title : '0.05£', value : 0.05},
+    TenPenny    : { TYPE:"TenPenny", title : '0.10£', value : 0.10},
+    TwentyPenny : { TYPE:"TwentyPenny", title : '0.20£', value : 0.20},
+    FiftyPenny  : { TYPE:"FiftyPenny", title : '0.50£', value : 0.50},
+    OnePound    : { TYPE:"OnePound", title : '1.0£', value : 1.00},
+    TwoPound    : { TYPE:"TwoPound", title : '2.0£', value : 2.0}
 };
 
 export const PRODUCTS = {

@@ -45,8 +45,8 @@ class Machine extends React.Component {
             <div className='column'>
                 <div className='info-container'>
                     <InfoDisplay message={infoDisplay.message}/>
-                    <div className='debugMode' onClick={this.onDebugClick.bind(this)}></div>
                     <Cashier/>
+                    <div className='debugMode' onClick={this.onDebugClick.bind(this)}></div>
                     <Wallet/>
                 </div>
             </div>

@@ -4,28 +4,30 @@ import classNames from "classnames";
 import "./styles.scss";
 
 
-function Coin({ coin, onClick }) {
+function Coin({ coin, onClick, quantity = "" }) {
 
-  const cssClass = classNames({
-    'coin': true,
-  });
+    const cssClass = classNames({
+        'coin': true,
+    });
 
-  const onCoinClick = () => {
-    onClick(coin);
-  };
+    const onCoinClick = () => {
+        onClick(coin);
+    };
 
-  return (
+    return (
         <div className="coin-container" data-coin={coin.title}>
             <div className={cssClass} onClick={onCoinClick} >
             </div>
+            {quantity ? <div>{quantity}</div> : "" }
         </div>
-  );
+    );
 }
 
 
 Coin.propTypes = {
-  coin: React.PropTypes.object.isRequired,
-  onClick: React.PropTypes.func
+    quantity: React.PropTypes.string,
+    coin: React.PropTypes.object.isRequired,
+    onClick: React.PropTypes.func
 };
 
 export default Coin;

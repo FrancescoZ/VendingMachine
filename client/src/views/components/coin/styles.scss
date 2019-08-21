@@ -25,6 +25,8 @@
 		background-color: $money;
         border-color: darken($money, 10%);
         border-width: 1em;
+        width: 15px;
+        height: 15px;    
 		&:before{
 			content: "1p";
 		}
@@ -36,6 +38,8 @@
 		background-color: $money;
         border-color: darken($money, 10%);
         border-width: 1em;
+        width: 20px;
+        height: 20px;
 		&:before{
 			content: "2p";
 		}
@@ -47,6 +51,8 @@
 		background-color: $money;
         border-color: darken($money, 10%);
         border-width: 1em;
+        width: 25px;
+        height: 25px;    
 		&:before{
 			content: "5p";
 		}
@@ -58,6 +64,8 @@
 		background-color: $money;
         border-color: darken($money, 10%);
         border-width: 1em;
+        width: 30px;
+        height: 30px;    
 		&:before{
 			content: "10p";
 		}
@@ -69,6 +77,8 @@
 		background-color: $money;
         border-color: darken($money, 10%);
         border-width: 1em;
+        width: 35px;
+        height: 35px;
 		&:before{
 			content: "20p";
 		}
@@ -80,6 +90,8 @@
 		background-color: $money;
         border-color: darken($money, 10%);
         border-width: 1em;
+        width: 40px;
+        height: 40px;    
 		&:before{
 			content: "50p";
 		}
@@ -91,6 +103,8 @@
 		background-color: $goldMoney;
         border-color: darken($goldMoney, 10%);
         border-width: 1em;
+        width: 45px;
+        height: 45px;    
 		&:before{
 			content: "1£";
 		}
@@ -102,6 +116,8 @@
 		background-color: $goldMoney;
         border-color: darken($goldMoney, 10%);
         border-width: 1em;
+        width: 50px;
+        height: 50px;    
 		&:before{
 			content: "2£";
 		}
