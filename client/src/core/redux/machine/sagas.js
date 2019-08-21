@@ -7,6 +7,7 @@ import { cashierActions } from '../cashier/index'
 import { analyticsActions } from '../analytics/index'
 import { vendingMachine } from '../../api/index'
 import { cashier } from '../../api/index'
+import { PRODUCTS } from '../../config/config';
 
 export function* purchase ({ payload }) {
 
@@ -39,15 +40,52 @@ export function* purchase ({ payload }) {
   }
 }
 
+export function* insert ({ payload }) {
+
+    let { rackLiteral, slotIndex } = payload;
+    try {
+        let slotInfo = vendingMachine.getSlotDataByIndex(rackLiteral, slotIndex);
+        let newRandomProducts = [
+            PRODUCTS.CHIPS,
+            PRODUCTS.COKE,
+            PRODUCTS.CANDY
+        ];
+        let toAddProd = slotInfo.product.type !== 0 ? 
+            slotInfo.product :
+            newRandomProducts[
+                Math.floor(Math.random() * newRandomProducts.length)];
+        let giveProductRequest = yield call(
+            [vendingMachine, vendingMachine.loadProduct], 
+            { LITERAL:rackLiteral}, 
+            slotIndex, 
+            toAddProd, 
+            slotInfo.quantity + 1); //call with context binding
+        yield put(analyticsActions.sendSuccessEvent(giveProductRequest));
+
+        let slotInfoData = vendingMachine.getSlotDataByIndex(payload.rackLiteral, payload.slotIndex);
+        yield put(machineActions.updateSlotData( rackLiteral, slotIndex, slotInfoData ));
+        yield put(cashierActions.updateData());
+        yield put(infoDisplayActions.updateMessage(`Hey, Some new ${toAddProd.title}`));
+
+    } catch (errorMessage) {
+        yield put(infoDisplayActions.updateMessage(errorMessage.message));
+        yield put(analyticsActions.sendErrorEvent(errorMessage));
+
+    }
+}
 
 // Watchers
 
 export function* watchPurchaseRequest() {
-  yield* takeEvery(machineActions.PURCHASE_REQUEST, purchase);
-}
+    yield* takeEvery(machineActions.PURCHASE_REQUEST, purchase);
+  }  
 
-
+export function* watchInsertRequest() {
+    yield* takeEvery(machineActions.INSERT_REQUEST, insert);
+  }  
+    
 // Root saga
 export const machineSagas = [
   fork(watchPurchaseRequest),
+  fork(watchInsertRequest),
 ];

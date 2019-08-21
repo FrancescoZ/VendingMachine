@@ -26,7 +26,9 @@ class Cashier extends React.Component {
     return (
       <div className={cssClass}>
         <div className='balance'>
-          Balance: <span className='sum'>{ parseFloat(cashierInfo.balance.toFixed(2)) } £</span>
+          Balance: <span className='sum'>{ parseFloat(cashierInfo.balance ? 
+            cashierInfo.balance.toFixed(2) :
+            0) } £</span>
         </div>
         <div className='change' onClick={this.onChangeClick.bind(this,cashierInfo.balance)}></div>
       </div>

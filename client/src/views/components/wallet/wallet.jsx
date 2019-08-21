@@ -28,7 +28,9 @@ class Wallet extends React.Component {
     return (
       <div className={cssClass}>
         <div className='balance'>
-          Wallet: <span className='sum'> {parseFloat(walletInfo.balance.toFixed(2))} £</span>
+          Wallet: <span className='sum'> {parseFloat( walletInfo.balance ?  
+            walletInfo.balance.toFixed(2) :
+            0)} £</span>
         </div>
         <div className='coins'>
           <div className='title'>

@@ -1,6 +1,7 @@
 import { machineActions } from './actions'
 
 export const initialState = {
+    debugMode: false
 };
 
 export function machineReducer (state = initialState, {type, payload} ) {
@@ -14,6 +15,10 @@ export function machineReducer (state = initialState, {type, payload} ) {
       let newState = {...state};
       newState[payload.rackLiteral][payload.slotIndex] = payload.data;
       return newState;
+    }
+
+    case machineActions.DEBUG_MODE_TOGGLE:{
+        return { ...state, debugMode: !state.debugMode};
     }
 
     default:
