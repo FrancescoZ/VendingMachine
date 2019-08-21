@@ -14,6 +14,15 @@ export function* getData () {
   }
 }
 
+export function* getChanges ( { payload }) {
+    try {
+      let data = yield call([wallet, wallet.getChanges],payload.value); //call with context binding
+      yield put(walletAction.setDisplayData(data));
+    } catch (e) {
+      console.log('err',e);
+    }
+  }
+  
 
 // Watchers
 
@@ -21,8 +30,12 @@ export function* watchGetData() {
   yield* takeEvery(walletAction.GET_DATA, getData);
 }
 
-
+export function* watchGetChanges() {
+    yield* takeEvery(walletAction.GET_CHANGES, getChanges);
+  }
+  
 // Root saga
 export const walletSagas = [
   fork(watchGetData),
+  fork(watchGetChanges),
 ];

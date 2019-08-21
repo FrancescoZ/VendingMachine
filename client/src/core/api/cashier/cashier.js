@@ -32,7 +32,9 @@ class Cashier {
 
     loadCoins(coinType, quantity) {
         try {
-            this.pocket[coinType] = quantity;
+            this.pocket[coinType] = this.pocket[coinType] ? 
+                this.pocket[coinType] + quantity : 
+                quantity;
         } catch (e) {
             console.log('err', e);
             return false;
@@ -100,7 +102,8 @@ class Cashier {
 
     calculateChange(toReturn){
         let total = 0;
-        let coins = this.pocket;
+        let coins = { ...this.pocket};
+        const coinsRef = { ...this.pocket};
         let general = COINS;
         var items = Object.keys(this.pocket).map(function(key) {
             return [key, coins[key]];
@@ -109,8 +112,9 @@ class Cashier {
                 return general[second[0]].value - general[first[0]].value;
             })
             .forEach((coinType) => {
-                for (let index = 0; index < coins[coinType[0]]; index++) {
-                    if (coins[coinType[0]] > 0 && general[coinType[0]].value + total < toReturn){
+                for (let index = 1; index <= coinsRef[coinType[0]]; index++) {
+                    if (coins[coinType[0]] > 0 && 
+                        general[coinType[0]].value + total <= toReturn){
                         coins[coinType[0]]-=1;
                         total += general[coinType[0]].value;
                     }

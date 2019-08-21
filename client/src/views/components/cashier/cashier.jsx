@@ -2,23 +2,25 @@
 import React from "react";
 import classNames from "classnames";
 import { connect } from 'react-redux';
-import { getCashierInfo } from '../../../core/redux/cashier/index';
-import { cashier } from '../../../core/api/index';
-import { wallet } from '../../../core/api/index';
+import { getCashierInfo, cashierActions } from '../../../core/redux/cashier/index';
 import Coin from "../coin/coin";
 import { COINS } from '../../../core/config/config';
+import { getMachineDebugMode } from '../../../core/redux/machine/selectors'
 
 import "./styles.scss";
+import { walletAction } from "../../../core/redux/wallet/index";
 
 class Cashier extends React.Component {
 
     onChangeClick(balance) {
-        wallet.getChanges(balance);
-        cashier.resetBalance();
+        this.props.getChanges(balance);
+        this.props.resetBalance();
     }
 
-    onCoinClick(coin) {
-      }
+    onCoinClick(coin, debugMode) {
+        if (debugMode)
+            this.props.loadChanges(coin);
+    }
     
     render() {
 
@@ -26,14 +28,15 @@ class Cashier extends React.Component {
             'numpad': true,
         });
 
-        let { cashierInfo } = this.props;
+        let { cashierInfo, debugMode } = this.props;
         let coinsArray = COINS;
         let elements = cashierInfo.coins ? Object.keys(coinsArray).map( (coin,index) => {
                 return <Coin
                         key={index}
                         coin={coinsArray[coin]}
                         quantity={cashierInfo.coins[coin].toString()}
-                        onClick={this.onCoinClick.bind(this,coinsArray[coin])}/>
+                        onClick={this.onCoinClick.bind(this,coinsArray[coin],   
+                            debugMode)}/>
             }) : "" ;
         return (
             <div className={cssClass}>
@@ -53,14 +56,34 @@ class Cashier extends React.Component {
     }
 }
 
+Cashier.propTypes = {
+    cashierInfo: React.PropTypes.object,
+    debugMode: React.PropTypes.bool,
+    loadChanges: React.PropTypes.func,
+    resetBalance: React.PropTypes.func,
+    getChanges: React.PropTypes.func,
+  };
+
 const mapStateToProps = (state) => {
     return {
         cashierInfo: getCashierInfo(state),
+        debugMode: getMachineDebugMode(state),
     };
 };
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+      loadChanges: (coin) =>
+        dispatch(cashierActions.loadChanges(coin)),
+      resetBalance: () =>
+        dispatch(cashierActions.resetBalance()),
+      getChanges: (balance) => 
+        dispatch(walletAction.getChanges(balance)),
+    }
+  };
 
 
 export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
 )(Cashier);
