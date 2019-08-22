@@ -18,7 +18,7 @@ class Machine extends React.Component {
 
   render() {
     let { machineInfo, infoDisplay } = this.props;
-
+    let debugClass = machineInfo.debugMode ? "debugMode" : "debugMode active";
     return (
         <div className='row'>
             <div className='column'>
@@ -46,7 +46,7 @@ class Machine extends React.Component {
                 <div className='info-container'>
                     <InfoDisplay message={infoDisplay.message}/>
                     <Cashier/>
-                    <div className='debugMode' onClick={this.onDebugClick.bind(this)}></div>
+                    <div className={debugClass} onClick={this.onDebugClick.bind(this)}></div>
                     <Wallet/>
                 </div>
             </div>

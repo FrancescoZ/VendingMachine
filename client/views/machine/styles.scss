@@ -1,5 +1,17 @@
 @import '../colors.scss';
 
+.debugMode.active{
+    background-color: green;
+    width: 60px;
+    border-radius: 100%;
+    padding: 19px 19px 10px 7px;
+    height: 60px;
+    margin-bottom: 3em;
+    &:before{
+        content: "Debug";
+    }
+}
+
 .debugMode{
     background-color: $debug;
     width: 60px;

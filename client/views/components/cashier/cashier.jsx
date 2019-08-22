@@ -30,7 +30,7 @@ class Cashier extends React.Component {
 
         let { cashierInfo, debugMode } = this.props;
         let coinsArray = COINS;
-        let elements = cashierInfo.coins ? Object.keys(coinsArray).map( (coin,index) => {
+        let elements = cashierInfo.coins && debugMode ? Object.keys(coinsArray).map( (coin,index) => {
                 return <Coin
                         key={index}
                         coin={coinsArray[coin]}

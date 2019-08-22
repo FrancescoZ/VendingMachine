@@ -1,6 +1,8 @@
 @import '../../colors.scss';
 
 .penny {
+    text-align: bottom;
+    align-content: bottom;
     display: flex;
     flex-wrap: wrap;
     padding: 0 4px;
