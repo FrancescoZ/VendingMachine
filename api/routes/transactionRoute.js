@@ -1,8 +1,8 @@
 'use strict';
-module.exports = function(app) {
-/*   var station = require('../controllers/stationNoAuthRoute');
-  app.route('/stations/authenticate')
-    .post(station.authenticate_station); */
+module.exports = function (app) {
+    var transaction = require('../controllers/transactionController');
+    app.route('/logs')
+        .get(transaction.showLog);
 }
 
 
