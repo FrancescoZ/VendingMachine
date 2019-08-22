@@ -1,0 +1,6 @@
+exports.constants = {
+    SELL: "SELL",
+    INSERT_PRODUCT: "INSERT_PROD",
+    INSERT_MONEY: "INSERT_MONEY",
+    GET_CHANGE: "GET_CHANGE"
+}

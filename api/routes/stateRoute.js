@@ -7,7 +7,6 @@ module.exports = function (app) {
         .delete(state.getChange)
         .put(state.insertMoney);
     app.route('/change')
-        .get(state.getChange)
         .put(state.addChange);
 
 }
