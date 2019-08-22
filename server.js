@@ -14,11 +14,15 @@ app.set('superSecret', config.secret);
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect(config.database); 
+;(async () => {
+    mongoose.connect(config.database); 
+});
+//distribute webpackfiles
 app.use(webpackMiddleware(webpack(webpackConfig)));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+//add routing
 var routes = require('./api/routes/routes');
 routes(app);
 
