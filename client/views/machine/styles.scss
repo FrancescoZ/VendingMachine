@@ -1,5 +1,10 @@
 @import '../colors.scss';
 
+.machineRow{
+    background-image: url(https://png.pngtree.com/thumb_back/fw800/background/20190222/ourmid/pngtree-blue-office-cartoon-background-backgroundoffice-backgroundcartoonadvertising-backgroundbackground-image_59561.jpg);
+    background-repeat: no-repeat;
+}
+
 .debugMode.active{
     background-color: green;
     width: 60px;
@@ -35,7 +40,7 @@
 	left: calc(50% - 165px);
 	width: 330px;
 	height: 500px;
-	background-color: $mint;
+	background-color: white;
 	border-radius: 10px;
 	perspective: 300px;
 	

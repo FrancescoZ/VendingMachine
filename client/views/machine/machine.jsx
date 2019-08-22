@@ -22,7 +22,8 @@ class Machine extends React.Component {
         return (
             <div className='page'>
                 <div className='row'>
-                    <div className='column'>
+                    <div className='column '>
+                        <div className='machineRow'>
                         <div className='machine'>
                             <div className='inner'>
                                 {Object.keys(machineInfo).map((rackLiteral, index) => {
@@ -41,6 +42,7 @@ class Machine extends React.Component {
                                 <Arm />
                             </div>
                             <Tray />
+                        </div>
                         </div>
                     </div>
                     <div className='column'>
