@@ -45,9 +45,7 @@ wallet.addSuccessListener(onWalletSuccessMessage);
 
 function render(Root) {
   ReactDOM.render(
-      <Root store={store}
-      />,
-    rootElement
+      <Root store={store} />, rootElement
   );
 }
 

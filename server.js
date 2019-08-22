@@ -1,3 +1,7 @@
+import webpack from 'webpack';
+import webpackMiddleware from 'webpack-dev-middleware';
+import webpackConfig from './webpack.config.js';
+
 var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
@@ -11,7 +15,7 @@ app.set('superSecret', config.secret);
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
 mongoose.connect(config.database); 
-
+app.use(webpackMiddleware(webpack(webpackConfig)));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

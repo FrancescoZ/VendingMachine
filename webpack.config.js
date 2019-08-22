@@ -7,12 +7,11 @@ const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlug
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
-const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 
 //=========================================================
 //  VARS
 //---------------------------------------------------------
-const NODE_ENV = process.env.NODE_ENV;
+const NODE_ENV = 'development';
 
 const ENV_DEVELOPMENT = NODE_ENV === 'development';
 const ENV_PRODUCTION = NODE_ENV === 'production';
@@ -27,10 +26,16 @@ const config = module.exports = {};
 config.resolve = {
   extensions: ['.js', '.jsx'],
   modules: [
-    path.resolve('.'),
-    'node_modules',
+    path.resolve(__dirname,'node_modules')
   ]
 };
+
+config.entry = {
+    main: [
+      './client/main.jsx',
+      'babel-polyfill'
+    ]
+  };
 
 config.plugins = [
   new LoaderOptionsPlugin({
@@ -64,19 +69,22 @@ const rules = {
   js: {
     loader: 'babel-loader',
     include: [
-      path.resolve(__dirname, 'src'),
+      path.resolve(__dirname, 'client'),
     ],
     test: /\.(js|jsx)$/,
+    query: {
+        presets: ["@babel/preset-env"]
+     }
   },
 
   scss: {
     test: /\.scss$/,
-    loaders: ['style','css','postcss','sass'],
+    loaders: ['style-loader','css-loader','postcss-loader','sass-loader'],
   },
 
   css: {
     test: /\.css$/,
-    loaders: ['style','css','postcss'],
+    loaders: ['style-loader','css-loader','postcss-loader'],
   },
 
   images: {
@@ -89,33 +97,26 @@ const rules = {
     loader: 'url-loader?limit=1024&name=assets/fonts/[name].[ext]'
   },
 
-  json: {test: /\.json$/, loader: 'json'},
+  json: {test: /\.json$/, loader: 'json-loader'},
 
 };
 
 //=====================================
 //  DEVELOPMENT or PRODUCTION
 //-------------------------------------
-if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
-  config.entry = {
-    main: [
-      './src/main.jsx',
-      'babel-polyfill'
-    ]
-  };
-
   config.output = {
     filename: '[name].js',
-    path: path.resolve('./build')
+    path: path.resolve(__dirname,'build')
+
   };
 
   config.module = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        loader: 'eslint',
+        loader: 'babel-loader',
         include: [
-          path.resolve(__dirname, 'src'),
+          path.resolve(__dirname, 'client'),
         ],
         enforce: 'pre'
       },
@@ -133,13 +134,9 @@ if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
       filename: 'index.html',
       hash: false,
       inject: 'body',
-      template: './src/index.html'
+      template: './client/index.html'
     })
   );
-  
-  
-  
-}
 
 
 //=====================================
@@ -149,9 +146,6 @@ if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
 if (ENV_DEVELOPMENT) {
   config.devtool = 'source-map';
 
-  config.entry.main.unshift(
-    'webpack-hot-middleware/client'
-  );
   config.devServer = {
     noInfo: true,
     log: console.log,
@@ -183,19 +177,7 @@ if (ENV_PRODUCTION) {
 
   config.plugins.push(
     new WebpackMd5Hash(),
-    new ExtractTextPlugin('styles.[contenthash].css'),
-    new UglifyJsPlugin({
-      comments: false,
-      compress: {
-        dead_code: true, // eslint-disable-line camelcase
-        screw_ie8: true, // eslint-disable-line camelcase
-        unused: true,
-        warnings: false
-      },
-      mangle: {
-        screw_ie8: true  // eslint-disable-line camelcase
-      }
-    })
+    new ExtractTextPlugin('styles.[contenthash].css')
   );
 }
 

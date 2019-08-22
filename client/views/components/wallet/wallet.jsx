@@ -24,7 +24,13 @@ class Wallet extends React.Component {
     });
 
     let { walletInfo } = this.props;
-
+    let coinsArray = COINS;
+    let elements = Object.keys(coinsArray).map( (coin,index) => {
+            return <Coin
+                    key={index}
+                    coin={coinsArray[coin]}
+                    onClick={this.onCoinClick.bind(this,coinsArray[coin])}/>
+        });
     return (
       <div className={cssClass}>
         <div className='balance'>
@@ -37,14 +43,7 @@ class Wallet extends React.Component {
             Insert a coin from the wallet:
           </div>
           <div className='penny'>
-            <Coin coin={COINS.OnePenny} onClick={::this.onCoinClick}/>
-            <Coin coin={COINS.TwoPenny} onClick={::this.onCoinClick}/>
-            <Coin coin={COINS.FivePenny} onClick={::this.onCoinClick}/>
-            <Coin coin={COINS.TenPenny} onClick={::this.onCoinClick}/>
-            <Coin coin={COINS.TwentyPenny} onClick={::this.onCoinClick}/>
-            <Coin coin={COINS.FiftyPenny} onClick={::this.onCoinClick}/>
-            <Coin coin={COINS.OnePound} onClick={::this.onCoinClick}/>
-            <Coin coin={COINS.TwoPound} onClick={::this.onCoinClick}/>
+            {elements}
           </div>
         </div>
       </div>
