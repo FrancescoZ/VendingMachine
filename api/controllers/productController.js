@@ -30,6 +30,7 @@ exports.insertProduct = function (req, res, next) {
     Product.findOne({
         "name": req.params.name
     }, function (err, prod) {
+        console.log(err);
         if (err)
             return error.error(err.message, res);
         prod.quantity += 1;

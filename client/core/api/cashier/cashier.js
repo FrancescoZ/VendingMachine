@@ -26,7 +26,24 @@ class Cashier {
         Object.keys(this.pocket).forEach((coinType) => {
             data[coinType] = this.pocket[coinType]
         });
-
+        fetch(window.location.href + "state",
+                {
+                    method: 'GET',
+                },300)
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        let data = {};
+                        Object.keys(result).forEach((coinType) => {
+                            data[coinType] = result[coinType]
+                        });
+                        resolve(createMessage('Data retrived', data))
+                    },
+                    (error) => {
+                        return reject(
+                            createMessage('Something went wrong while trying to add a product', this.DATA))
+                    }
+                )
         return data;
     }
 
@@ -39,6 +56,24 @@ class Cashier {
             console.log('err', e);
             return false;
         }
+        fetch(window.location.href + "change",
+                {
+                    method: 'PUT',
+                })
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        let data = {};
+                        Object.keys(result).forEach((coinType) => {
+                            data[coinType] = result[coinType]
+                        });
+                        resolve(createMessage('Coin accepted', this.pocket))
+                    },
+                    (error) => {
+                        return reject(
+                            createMessage('Coin was rejected', this.pocket))
+                    }
+                )
     }
 
     getCoinsByIndex(coinsType) {
@@ -87,6 +122,24 @@ class Cashier {
         } else {
             this.publishFailure(createMessage('Coin was rejected', coin))
         }
+        fetch(window.location.href + "money",
+                {
+                    method: 'PUT',
+                })
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        let data = {};
+                        Object.keys(result).forEach((coinType) => {
+                            data[coinType] = result[coinType]
+                        });
+                        resolve(createMessage('Coin accepted', coin))
+                    },
+                    (error) => {
+                        return reject(
+                            createMessage('Coin was rejected', coin))
+                    }
+                )
     }
 
     resetBalance() {
@@ -98,6 +151,24 @@ class Cashier {
         } else {
             this.publishFailure(createMessage('No changes found', this.data.balance))
         }
+        fetch(window.location.href + "money",
+                {
+                    method: 'DELETE',
+                })
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        let data = {};
+                        Object.keys(result).forEach((coinType) => {
+                            data[coinType] = result[coinType]
+                        });
+                        resolve(createMessage('Changes Returned', bl))
+                    },
+                    (error) => {
+                        return reject(
+                            createMessage('No changes found', this.data.balance))
+                    }
+                )
     }
 
     calculateChange(toReturn){

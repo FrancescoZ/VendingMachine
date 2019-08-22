@@ -163,23 +163,23 @@ if (ENV_DEVELOPMENT) {
 //  PRODUCTION
 //-------------------------------------
 
-if (ENV_PRODUCTION) {
+// if (ENV_PRODUCTION) {
 
-  config.devtool = 'hidden-source-map';
-  config.output.filename = '[name].[hash].js';
+//   config.devtool = 'hidden-source-map';
+//   config.output.filename = '[name].[hash].js';
 
-  config.module = {
-    rules: [
-      rules.js,
-      {test: /\.scss$/, loader: ExtractTextPlugin.extract('css!postcss!sass')}
-    ]
-  };
+//   config.module = {
+//     rules: [
+//       rules.js,
+//       {test: /\.scss$/, loader: ExtractTextPlugin.extract('css!postcss!sass')}
+//     ]
+//   };
 
-  config.plugins.push(
-    new WebpackMd5Hash(),
-    new ExtractTextPlugin('styles.[contenthash].css')
-  );
-}
+//   config.plugins.push(
+//     new WebpackMd5Hash(),
+//     new ExtractTextPlugin('styles.[contenthash].css')
+//   );
+// }
 
 
 
